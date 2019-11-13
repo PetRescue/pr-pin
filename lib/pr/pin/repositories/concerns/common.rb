@@ -3,6 +3,10 @@ module PR
     module Repositories
       module Concerns
         module Common
+          def self.included(mod)
+            mod.struct_namespace(PR::Pin::Struct)
+          end
+
           def create(*args)
             API::Result.wrap(root) do
               root.command(:create).call(*args)

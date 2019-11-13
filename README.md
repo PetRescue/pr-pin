@@ -41,7 +41,7 @@ charge = PR::Pin.charges.create(
 
 charge.success? # => true
 charge.error? # => false
-charge # => #<ROM::Struct::Charge>
+charge # => #<PR::Pin::Struct::Charge>
 
 # For a subscription, create a customer using a card token
 customer = PR::Pin.customers.create(
@@ -50,7 +50,7 @@ customer = PR::Pin.customers.create(
 )
 customer.success? # => true
 customer.error? # => false
-customer # => #<ROM::Struct::Customer>
+customer # => #<PR::Pin::Struct::Customer>
 
 # And then attach a subscription using the plan token from
 # the plans endpoint (you may need to create the plan first)
@@ -60,7 +60,7 @@ subscription = PR::Pin.subscriptions.create(
 )
 subscription.success? # => true
 subscription.error? # => false
-subscription # => #<ROM::Struct::Subscription>
+subscription # => #<PR::Pin::Struct::Subscription>
 ```
 
 ## API Coverage
