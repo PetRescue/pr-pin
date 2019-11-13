@@ -1,6 +1,7 @@
 require 'rom-repository'
 require 'pr/pin/api/error'
 require 'pr/pin/api/result'
+require 'pr/pin/repositories/concerns/common'
 require 'pr/pin/repositories/charges'
 require 'pr/pin/repositories/customers'
 require 'pr/pin/repositories/plans'
