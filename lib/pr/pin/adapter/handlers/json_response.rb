@@ -10,15 +10,22 @@ module PR
               response.body,
               symbolize_names: true
             )
+            pagination_result = result.fetch(:pagination, false)
 
             if SUCCESS_CODES.include?(response.code)
               if %i(post put patch).include?(dataset.request_method)
-                result[:response]
+                response = result[:response]
               else
-                Array([result[:response]]).flatten(1)
+                response = Array([result[:response]]).flatten(1)
+              end
+
+              if pagination_result
+                PaginatedResponse.new(response, pagination_result)
+              else
+                Response.new(response)
               end
             else
-              raise(Error.new(response, result))
+              raise(ResponseError.new(response, result))
             end
           end
         end

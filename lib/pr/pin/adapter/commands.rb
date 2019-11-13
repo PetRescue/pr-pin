@@ -6,9 +6,7 @@ module PR
           adapter :pr_pin
 
           def execute(*args, &block)
-            dataset = super
-
-            relation.new(dataset).to_a
+            relation.new(super.map(&:to_h)).to_a
           end
         end
 
@@ -16,9 +14,7 @@ module PR
           adapter :pr_pin
 
           def execute(*args, &block)
-            dataset = super
-
-            relation.new(dataset).to_a
+            relation.new(super.map(&:to_h)).to_a
           end
         end
 

@@ -1,7 +1,10 @@
 module PR
   module Pin
     module Adapter
-      class Error < StandardError
+      Error = Class.new(StandardError)
+      NoPaginationError = Class.new(Error)
+
+      class ResponseError < Error
         attr_reader :response, :result
 
         def initialize(response, result)

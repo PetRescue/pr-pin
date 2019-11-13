@@ -10,6 +10,6 @@ require 'pr-pin'
 # require 'pry'
 # Pry.start
 
-require 'irb'
+require 'pry'
 
-IRB.start(__FILE__)
+Pry.start(__FILE__)

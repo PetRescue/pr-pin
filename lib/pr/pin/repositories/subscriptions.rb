@@ -13,7 +13,7 @@ module PR
             root.with_params(
               page: page,
               per_page: per_page
-            ).to_a
+            ).paginate
           end
         end
       end

@@ -4,7 +4,7 @@ module PR
       class Result < SimpleDelegator
         def self.wrap(relation, &block)
           new(block.call)
-        rescue PR::Pin::Adapter::Error => error
+        rescue PR::Pin::Adapter::ResponseError => error
           relation.dataset.error_handler.(Error.new(error))
         end
 
