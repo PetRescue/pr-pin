@@ -12,7 +12,10 @@ module PR
             dataset.uri
           ) unless materialized.paginates?
 
-          MaterializedRelation.new(materialized).paginate
+          PaginatedResponse.new(
+            new(materialized).to_a,
+            materialized.pagination_params
+          )
         end
 
         def input_schema
