@@ -1,4 +1,4 @@
-RSpec.shared_context 'create customer responses' do
+RSpec.shared_context 'responses.customers.create.success' do
   let(:customer) { Factory.structs[:customer] }
   let(:successful_response) do
     {
@@ -26,20 +26,5 @@ RSpec.shared_context 'create customer responses' do
       }
     }
   end
-  let(:error_response) do
-    {
-      error: 'invalid_resource',
-      error_description: 'One or more parameters were missing or invalid',
-      messages: [
-        {
-          code: 'email_invalid',
-          message: "Email isn't valid",
-          param: 'email'
-        }
-      ]
-    }
-  end
-
   let(:successful_response_json) { JSON.dump(successful_response) }
-  let(:error_response_json) { JSON.dump(error_response) }
 end

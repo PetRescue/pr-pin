@@ -1,9 +1,7 @@
 RSpec.describe 'PR::Pin.customers.create' do
-  include_context 'create customer responses' do
-    let(:customer) { Factory.structs[:customer] }
-  end
-
   context 'successful response' do
+    include_context 'responses.customers.create.success'
+
     let(:params) do
       {
         email: customer.email,
@@ -35,6 +33,10 @@ RSpec.describe 'PR::Pin.customers.create' do
   end
 
   context 'error response' do
+    let(:customer) { Factory.structs[:customer] }
+
+    include_context 'responses.customers.create.error'
+
     let(:params) do
       {
         email: customer.email,
