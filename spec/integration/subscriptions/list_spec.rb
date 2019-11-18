@@ -1,10 +1,10 @@
-RSpec.describe 'PR::Pin.subscriptions.list' do
-  include_context 'responses.subscriptions.list.success'
+RSpec.describe 'PR::Pin.plans.list' do
+  include_context 'responses.plans.list.success'
 
   let!(:request_stub) do
     stub_request(
       :get,
-      'https://test-api.pinpayments.com/1/subscriptions'
+      'https://test-api.pinpayments.com/1/plans'
     ).with(
       query: params,
       basic_auth: [PIN_SECRET_KEY, ''],
@@ -15,7 +15,7 @@ RSpec.describe 'PR::Pin.subscriptions.list' do
   end
 
   subject!(:result) do
-    PR::Pin.subscriptions.list(params)
+    PR::Pin.plans.list(params)
   end
 
   it { expect(request_stub).to have_been_requested }
@@ -28,7 +28,7 @@ RSpec.describe 'PR::Pin.subscriptions.list' do
   it { expect(result.per_page).to eql(3) }
   it { expect(result.total_pages).to eql(1) }
   it { expect(result.total_count).to eql(3) }
-  it { expect(result[0]).to eql(subscriptions[0]) }
-  it { expect(result[1]).to eql(subscriptions[1]) }
-  it { expect(result[2]).to eql(subscriptions[2]) }
+  it { expect(result[0]).to eql(plans[0]) }
+  it { expect(result[1]).to eql(plans[1]) }
+  it { expect(result[2]).to eql(plans[2]) }
 end
