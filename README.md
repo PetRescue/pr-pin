@@ -18,6 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
+### Connecting
 ```ruby
 # Require the gem
 require 'pr-pin'
@@ -25,9 +26,33 @@ require 'pr-pin'
 # Connect using your Pin Payments secret key
 PR::Pin.connect(
   secret_key: 'your_secret_key',
+  # raise on error, defaults to returning PR::Pin::API::Error instance
+  error_handler: ->(exception) { raise(exception) },
   sandbox: true # Defaults to true, false for production
 )
 
+# You can use multiple environments by passsing an identifier
+# to PR::Pin.connect, i.e.
+PR::Pin.connect(
+  :admin, # defaults to :default
+  secret_key: 'your_secret_key',
+  sandbox: true
+)
+
+# You can specify the environment to use when resolving the endpoint
+# repository from the PR::Pin container
+customers = PR::Pin.customers(:admin).list(page: 1)
+# => [#<PR::Pin::Struct::Customer>, ...]
+customers.current_page # => 1
+customers.per_page # => 25
+customers.prev_page # => nil
+customers.next_page # => 2
+customers.total_count # => 53
+customers.total_pages # => 3
+```
+
+### One-off charge
+```ruby
 # Create a charge using a token, you can get a card token
 # using Pin Payments hosted fields, or by creating a card
 # via the API, this can be used to take a one-off payment
@@ -38,11 +63,13 @@ charge = PR::Pin.charges.create(
   ip_address: '127.0.0.1',
   card_token: 'card_58b6c52f131956c4394ba7'
 )
-
 charge.success? # => true
 charge.error? # => false
 charge # => #<PR::Pin::Struct::Charge>
+```
 
+### Recurring payments
+```ruby
 # For a subscription, create a customer using a card token
 customer = PR::Pin.customers.create(
   email: 'a.user@petrescue.com.au',
@@ -53,7 +80,7 @@ customer.error? # => false
 customer # => #<PR::Pin::Struct::Customer>
 
 # And then attach a subscription using the plan token from
-# the plans endpoint (you may need to create the plan first)
+# the plans endpoint (you will need to create the plan first)
 subscription = PR::Pin.subscriptions.create(
   plan_token: 'plan_2d16b31863015a57820b70',
   customer_token: 'cus_9d18a4516a6ae777-NDecB'
@@ -61,6 +88,18 @@ subscription = PR::Pin.subscriptions.create(
 subscription.success? # => true
 subscription.error? # => false
 subscription # => #<PR::Pin::Struct::Subscription>
+```
+
+### Errors - See [PR::Pin::API::Error](https://github.com/PetRescue/pr-pin/blob/master/lib/pr/pin/api/error.rb)
+```ruby
+charge = PR::Pin.charges.create(
+  email: 'a.user@petrescue.com.au'
+)
+charge.success? # => false
+charge.error? # => true
+charge.code # => "invalid_resource"
+charge.description # => "One or more parameters were missing or invalid"
+charge # => => #<PR::Pin::API::Error>
 ```
 
 ## API Coverage
