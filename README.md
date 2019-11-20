@@ -18,29 +18,29 @@ Or install it yourself as:
 
 ## Usage
 
-### Connecting
+### Registering Connections
 ```ruby
 # Require the gem
 require 'pr-pin'
 
-# Connect using your Pin Payments secret key
-PR::Pin.connect(
+# Register a connection using your Pin Payments secret key
+PR::Pin.register_connection(
   secret_key: 'your_secret_key',
   # raise on error, defaults to returning PR::Pin::API::Error instance
   error_handler: ->(exception) { raise(exception) },
   sandbox: true # Defaults to true, false for production
 )
 
-# You can use multiple environments by passsing an identifier
-# to PR::Pin.connect, i.e.
-PR::Pin.connect(
+# You can register another connection by passsing an identifier to
+# PR::Pin.register_connection, i.e.
+PR::Pin.register_connection(
   :admin, # defaults to :default
   secret_key: 'your_secret_key',
   sandbox: true
 )
 
-# You can specify the environment to use when resolving the endpoint
-# repository from the PR::Pin container
+# Then, you can specify the connection to use when resolving the
+# endpoint repository from the PR::Pin container
 customers = PR::Pin.customers(:admin).list(page: 1)
 # => [#<PR::Pin::Struct::Customer>, ...]
 customers.current_page # => 1

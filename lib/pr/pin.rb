@@ -19,7 +19,7 @@ module PR
     register(:default_error_handler) { |error| error }
 
     class << self
-      def connect(
+      def register_connection(
         identifier = :default,
         secret_key:,
         sandbox: true,
