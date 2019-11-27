@@ -13,7 +13,7 @@ module PR
     extend Dry::Container::Mixin
 
     register(:environments, memoize: true) do
-      Concurrent::Hash.new
+      {}
     end
 
     register(:default_error_handler) { |error| error }

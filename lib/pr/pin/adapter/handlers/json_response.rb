@@ -5,7 +5,7 @@ module PR
         class JSONResponse
           SUCCESS_CODES = %w(200 201).freeze
 
-          def self.call(response, dataset)
+          def call(response, dataset)
             result = JSON.parse(
               response.body,
               symbolize_names: true
