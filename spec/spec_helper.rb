@@ -12,7 +12,7 @@ end
 
 require 'pr-pin'
 
-Dir[root.join('support/**/*.rb').to_s].each do |f|
+Dir[root.join('support/*.rb').to_s].each do |f|
   require f
 end
 

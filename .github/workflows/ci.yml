@@ -1,0 +1,52 @@
+name: ci
+
+on:
+  push:
+    paths:
+      - .github/workflows/ci.yml
+      - lib/**
+      - spec/**
+      - Gemfile
+      - "*.gemspec"
+
+jobs:
+  tests-mri:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["2.6.x", "2.5.x", "2.4.x"]
+        include:
+          - ruby: "2.6.x"
+            coverage: "true"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{matrix.ruby}}
+      - name: Run all tests
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --without tools docs benchmarks
+          bundle exec rake
+
+  tests-others:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ["jruby:9.2.8", "ruby:rc"]
+    container:
+      image: ${{matrix.image}}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install git
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends git
+      - name: Run all tests
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --without tools docs benchmarks
+          bundle exec rspec

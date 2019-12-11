@@ -5,3 +5,7 @@ builder = ROM::Factory.configure do |config|
 end
 
 Factory = builder.struct_namespace(PR::Pin::Struct)
+
+Dir[SPEC_ROOT.join('support/factories/*.rb').to_s].each do |f|
+  require f
+end
