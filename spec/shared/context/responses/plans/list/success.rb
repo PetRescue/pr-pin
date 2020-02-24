@@ -9,7 +9,7 @@ RSpec.shared_context 'responses.plans.list.success' do
   let(:per_page) { 3 }
   let(:total_count) { 3 }
   let(:plans) do
-    per_page.times.map { Factory.structs[:plan] }
+    Array.new(per_page) { Factory.structs[:plan] }
   end
   let(:successful_response) do
     {
