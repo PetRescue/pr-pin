@@ -1,3 +1,13 @@
+if ENV.fetch('COVERAGE', false)
+  require 'simplecov'
+
+  SimpleCov.start do
+    minimum_coverage 90
+    maximum_coverage_drop 2
+    add_filter %r{^/spec/}
+  end
+end
+
 require 'pathname'
 require 'securerandom'
 require 'bundler/setup'
