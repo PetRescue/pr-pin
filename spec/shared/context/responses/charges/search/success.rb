@@ -1,10 +1,12 @@
-RSpec.shared_context 'responses.charges.list.success' do
+RSpec.shared_context 'responses.charges.search.success' do
   let(:params) do
     {
+      query: query,
       page: page,
       per_page: per_page
     }
   end
+  let(:query) { 'test' }
   let(:page) { 1 }
   let(:per_page) { 3 }
   let(:total_count) { 3 }
