@@ -114,7 +114,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Charges | POST /charges | Creates a new charge | [:link:](https://pinpayments.com/developers/api-reference/charges#post-charges) | :heavy_check_mark: |
 | Charges | PUT /charges/charge-token/capture | Captures a previously authorised charge | [:link:](https://pinpayments.com/developers/api-reference/charges#put-charges) | :x: |
 | Charges | GET /charges | Returns a paginated list of all charges | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charges) | :heavy_check_mark: |
-| Charges | GET /charges/search | Returns a paginated list of charges matching the search criteria | [:link:](https://pinpayments.com/developers/api-reference/charges#search-charges) | :x: |
+| Charges | GET /charges/search | Returns a paginated list of charges matching the search criteria | [:link:](https://pinpayments.com/developers/api-reference/charges#search-charges) | :heavy_check_mark: |
 | Charges | GET /charges/charge-token | Returns the details of a charge | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charge) | :x: |
 | Customers | POST /customers | Creates a new customer | [:link:](https://pinpayments.com/developers/api-reference/customers#post-customers) | :heavy_check_mark: |
 | Customers | GET /customers | Returns a paginated list of all customers | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers) | :heavy_check_mark: |
