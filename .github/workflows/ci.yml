@@ -19,6 +19,8 @@ jobs:
         include:
           - ruby: "2.6.x"
             coverage: "true"
+    env:
+      COVERAGE: ${{matrix.coverage}}
     steps:
       - uses: actions/checkout@v1
       - name: Set up Ruby
@@ -30,7 +32,12 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3 --without tools docs benchmarks
           bundle exec rake
-
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: env.COVERAGE
+        with:
+          name: coverage-report
+          path: coverage
   tests-others:
     runs-on: ubuntu-latest
     strategy:
