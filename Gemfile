@@ -7,4 +7,5 @@ gemspec
 
 group :test do
   gem 'rom-factory', github: 'rom-rb/rom-factory'
+  gem 'coveralls', require: false
 end

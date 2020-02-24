@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'pathname'
 require 'securerandom'
 require 'bundler/setup'
