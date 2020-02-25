@@ -1,11 +1,15 @@
 RSpec.describe 'PR::Pin.subscriptions.create' do
+  let(:representer) { Representers::JSONHash::Subscription.new }
+
   context 'successful response' do
-    include_context 'responses.subscriptions.create.success'
+    include_context 'responses.create.success' do
+      let(:record) { Factory.structs[:subscription] }
+    end
 
     let(:params) do
       {
-        plan_token: subscription.plan_token,
-        customer_token: subscription.customer_token
+        plan_token: record.plan_token,
+        customer_token: record.customer_token
       }
     end
     let!(:request_stub) do
@@ -29,18 +33,18 @@ RSpec.describe 'PR::Pin.subscriptions.create' do
     it { expect(request_stub).to have_been_requested }
     it { expect(result.success?).to be_truthy }
     it { expect(result.error?).to be_falsey }
-    it { expect(result).to eql(subscription) }
+    it { expect(result).to eql(record) }
   end
 
   context 'error response' do
-    let(:subscription) { Factory.structs[:subscription] }
+    let(:record) { Factory.structs[:subscription] }
 
     include_context 'responses.subscriptions.create.error'
 
     let(:params) do
       {
         plan_token: nil,
-        customer_token: subscription.customer_token
+        customer_token: record.customer_token
       }
     end
     let!(:request_stub) do

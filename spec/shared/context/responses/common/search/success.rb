@@ -1,27 +1,18 @@
-RSpec.shared_context 'responses.customers.list.success' do
+RSpec.shared_context 'responses.search.success' do
   let(:params) do
     {
+      query: query,
       page: page,
       per_page: per_page
     }
   end
+  let(:query) { 'test' }
   let(:page) { 1 }
   let(:per_page) { 3 }
   let(:total_count) { 3 }
-  let(:customers) do
-    Array.new(per_page) { Factory.structs[:customer] }
-  end
   let(:successful_response) do
     {
-      response: customers.map { |customer|
-        {
-          token: customer.token,
-          email: customer.email,
-          created_at: customer.created_at,
-          card: customer.card
-        }
-      },
-      count: total_count,
+      response: records.map { |record| representer.(record) },
       pagination: {
         current: page,
         per_page: per_page,

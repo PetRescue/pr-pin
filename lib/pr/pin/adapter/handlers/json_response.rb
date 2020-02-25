@@ -10,6 +10,7 @@ module PR
               response.body,
               symbolize_names: true
             )
+
             pagination_result = result.fetch(:pagination, false)
 
             if SUCCESS_CODES.include?(response.code)
