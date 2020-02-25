@@ -1,3 +1,4 @@
+require 'concurrent'
 require 'dry-container'
 require 'pr/pin/version'
 require 'pr/pin/adapter'

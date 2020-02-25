@@ -5,8 +5,10 @@ module PR
         include Concerns::Common
 
         def search(**params)
-          API::Result.wrap(root) do
-            root.append_path('search').with_params(params).paginate
+          relation = root.append_path('search').with_params(params)
+
+          API::PaginatedResult.wrap(relation) do
+            relation.paginate
           end
         end
       end

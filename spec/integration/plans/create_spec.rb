@@ -1,13 +1,17 @@
 RSpec.describe 'PR::Pin.plans.create' do
+  let(:representer) { Representers::JSONHash::Plan.new }
+
   context 'successful response' do
-    include_context 'responses.plans.create.success'
+    include_context 'responses.create.success' do
+      let(:record) { Factory.structs[:plan] }
+    end
 
     let(:params) do
       {
-        name: plan.name,
-        amount: plan.amount,
-        currency: plan.currency,
-        interval: plan.interval
+        name: record.name,
+        amount: record.amount,
+        currency: record.currency,
+        interval: record.interval
       }
     end
     let!(:request_stub) do
@@ -31,20 +35,20 @@ RSpec.describe 'PR::Pin.plans.create' do
     it { expect(request_stub).to have_been_requested }
     it { expect(result.success?).to be_truthy }
     it { expect(result.error?).to be_falsey }
-    it { expect(result).to eql(plan) }
+    it { expect(result).to eql(record) }
   end
 
   context 'error response' do
-    let(:plan) { Factory.structs[:plan] }
+    let(:record) { Factory.structs[:plan] }
 
     include_context 'responses.plans.create.error'
 
     let(:params) do
       {
-        name: plan.name,
-        amount: plan.amount,
-        currency: plan.currency,
-        interval: plan.interval
+        name: record.name,
+        amount: record.amount,
+        currency: record.currency,
+        interval: record.interval
       }
     end
     let!(:request_stub) do

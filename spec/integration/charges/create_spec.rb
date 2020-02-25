@@ -1,13 +1,17 @@
 RSpec.describe 'PR::Pin.charges.create' do
+  let(:representer) { Representers::JSONHash::Charge.new }
+
   context 'successful response' do
-    include_context 'responses.charges.create.success'
+    include_context 'responses.create.success' do
+      let(:record) { Factory.structs[:charge] }
+    end
 
     let(:params) do
       {
-        email: charge.email,
-        description: charge.description,
-        amount: charge.amount,
-        ip_address: charge.ip_address
+        email: record.email,
+        description: record.description,
+        amount: record.amount,
+        ip_address: record.ip_address
       }
     end
     let!(:request_stub) do
@@ -31,20 +35,20 @@ RSpec.describe 'PR::Pin.charges.create' do
     it { expect(request_stub).to have_been_requested }
     it { expect(result.success?).to be_truthy }
     it { expect(result.error?).to be_falsey }
-    it { expect(result).to eql(charge) }
+    it { expect(result).to eql(record) }
   end
 
   context 'error response' do
-    let(:charge) { Factory.structs[:charge] }
+    let(:record) { Factory.structs[:charge] }
 
     include_context 'responses.charges.create.error'
 
     let(:params) do
       {
-        email: charge.email,
-        description: charge.description,
-        amount: charge.amount,
-        ip_address: charge.ip_address
+        email: record.email,
+        description: record.description,
+        amount: record.amount,
+        ip_address: record.ip_address
       }
     end
     let!(:request_stub) do

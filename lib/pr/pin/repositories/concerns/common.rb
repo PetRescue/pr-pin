@@ -14,12 +14,12 @@ module PR
           end
 
           def list(page: 1, per_page: nil)
-            API::Result.wrap(root) do
-              root.with_params(
-                page: page,
-                per_page: per_page
-              ).paginate
-            end
+            relation = root.with_params(
+              page: page,
+              per_page: per_page
+            )
+
+            API::PaginatedResult.wrap(relation) { relation.paginate }
           end
         end
       end

@@ -1,6 +1,7 @@
 require 'rom-repository'
 require 'pr/pin/api/error'
 require 'pr/pin/api/result'
+require 'pr/pin/api/paginated_result'
 require 'pr/pin/struct'
 require 'pr/pin/repositories/concerns/common'
 require 'pr/pin/repositories/charges'

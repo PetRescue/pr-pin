@@ -5,21 +5,15 @@ module PR
         class JSONRequest
           SSL_PORT = 443
 
-          attr_reader :clients
-
-          def initialize
-            @clients = Hash.new do |hash, key|
-              hash[key] = Net::HTTP.new(*key).tap do |client|
-                if SSL_PORT == client.port
-                  client.use_ssl = true
-                  client.verify_mode = OpenSSL::SSL::VERIFY_PEER
-                end
-              end
-            end
-          end
-
           def call(dataset)
             uri = dataset.uri
+
+            http = Net::HTTP.new(uri.host, uri.port).tap do |client|
+              if SSL_PORT == client.port
+                client.use_ssl = true
+                client.verify_mode = OpenSSL::SSL::VERIFY_PEER
+              end
+            end
 
             request_class = Net::HTTP.const_get(
               PR::Pin::Inflector.classify(dataset.request_method)
@@ -34,7 +28,7 @@ module PR
 
             request.body = dataset.params.to_json if dataset.params.any?
 
-            clients[[uri.host, uri.port]].request(request)
+            http.request(request)
           end
         end
       end

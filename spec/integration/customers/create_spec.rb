@@ -1,11 +1,15 @@
 RSpec.describe 'PR::Pin.customers.create' do
+  let(:representer) { Representers::JSONHash::Customer.new }
+
   context 'successful response' do
-    include_context 'responses.customers.create.success'
+    include_context 'responses.create.success' do
+      let(:record) { Factory.structs[:customer] }
+    end
 
     let(:params) do
       {
-        email: customer.email,
-        card_token: customer.card[:token]
+        email: record.email,
+        card_token: record.card[:token]
       }
     end
     let!(:request_stub) do
@@ -29,18 +33,18 @@ RSpec.describe 'PR::Pin.customers.create' do
     it { expect(request_stub).to have_been_requested }
     it { expect(result.success?).to be_truthy }
     it { expect(result.error?).to be_falsey }
-    it { expect(result).to eql(customer) }
+    it { expect(result).to eql(record) }
   end
 
   context 'error response' do
-    let(:customer) { Factory.structs[:customer] }
+    let(:record) { Factory.structs[:customer] }
 
     include_context 'responses.customers.create.error'
 
     let(:params) do
       {
-        email: customer.email,
-        card_token: customer.card[:token]
+        email: record.email,
+        card_token: record.card[:token]
       }
     end
     let!(:request_stub) do

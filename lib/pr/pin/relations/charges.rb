@@ -16,8 +16,8 @@ module PR
           attribute :card, Types::JSON::Hash
           attribute :transfer, Types::Array.of(Types::JSON::Hash)
           attribute :amount_refunded, Types::Strict::Integer
-          attribute :total_fees, Types::Strict::Integer
-          attribute :merchant_entitlement, Types::Strict::Integer
+          attribute :total_fees, Types::Strict::Integer.optional
+          attribute :merchant_entitlement, Types::Strict::Integer.optional
           attribute :refund_pending, Types::Strict::Bool
           attribute :authorisation_expired, Types::Strict::Bool
           attribute :captured, Types::Strict::Bool
