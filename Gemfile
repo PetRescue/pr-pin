@@ -7,5 +7,5 @@ gemspec
 
 group :test do
   gem 'simplecov', require: false
-  gem 'rom-factory', github: 'rom-rb/rom-factory'
+  gem 'rom-factory'
 end
