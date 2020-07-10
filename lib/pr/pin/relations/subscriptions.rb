@@ -5,7 +5,7 @@ module PR
         schema(:subscriptions) do
           attribute :state, Types::Strict::String
           attribute :next_billing_date, Types::JSON::DateTime
-          attribute :active_interval_started_at, Types::JSON::DateTime
+          attribute :active_interval_started_at, Types::JSON::DateTime.optional
           attribute :active_interval_finishes_at, Types::JSON::DateTime.optional
           attribute :cancelled_at, Types::JSON::DateTime.optional
           attribute :created_at, Types::JSON::DateTime
