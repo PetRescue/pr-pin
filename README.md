@@ -66,6 +66,10 @@ charge = PR::Pin.charges.create(
 charge.success? # => true
 charge.error? # => false
 charge # => #<PR::Pin::Struct::Charge>
+
+# Find a charge by token
+PR::Pin.charges.find('ch_1ee2d1')
+# => #<PR::Pin::Struct::Charge>
 ```
 
 ### Recurring payments
@@ -100,6 +104,25 @@ ledger
 # ]
 ```
 
+### Refunds
+```ruby
+# List refunds (paginated)
+refunds = PR::Pin.refunds.list
+# => [#<PR::Pin::Struct::Refund>, ...]
+
+# Find a specific refund
+refund = PR::Pin.refunds.find('rf_1e5429')
+# => #<PR::Pin::Struct::Refund>
+
+# Create a refund for a charge
+PR::Pin.refunds.create_for_charge('ch_1ee2d1')
+# => #<PR::Pin::Struct::Refund>
+
+# List all refunds by charge
+PR::Pin.refunds.for_charge('ch_1ee2d1')
+# => [#<PR::Pin::Struct::Refund>, ...]
+```
+
 ### Errors - See [PR::Pin::API::Error](https://github.com/PetRescue/pr-pin/blob/master/lib/pr/pin/api/error.rb)
 ```ruby
 charge = PR::Pin.charges.create(
@@ -125,7 +148,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Charges | PUT /charges/charge-token/capture | Captures a previously authorised charge | [:link:](https://pinpayments.com/developers/api-reference/charges#put-charges) | :x: |
 | Charges | GET /charges | Returns a paginated list of all charges | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charges) | :heavy_check_mark: |
 | Charges | GET /charges/search | Returns a paginated list of charges matching the search criteria | [:link:](https://pinpayments.com/developers/api-reference/charges#search-charges) | :heavy_check_mark: |
-| Charges | GET /charges/charge-token | Returns the details of a charge | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charge) | :x: |
+| Charges | GET /charges/charge-token | Returns the details of a charge | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charge) | :heavy_check_mark: |
 | Customers | POST /customers | Creates a new customer | [:link:](https://pinpayments.com/developers/api-reference/customers#post-customers) | :heavy_check_mark: |
 | Customers | GET /customers | Returns a paginated list of all customers | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers) | :heavy_check_mark: |
 | Customers | GET /customers/customer-token | Returns the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customer) | :x: |
@@ -157,10 +180,10 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Recipients | GET /recipients/recipient-token | Returns the details of a recipient | [:link:](https://pinpayments.com/developers/api-reference/recipients#get-recipient) | :x: |
 | Recipients | PUT /recipients/recipient-token | Updates the details of a recipient | [:link:](https://pinpayments.com/developers/api-reference/recipients#put-recipient) | :x: |
 | Recipients | GET /recipients/recipient-token/transfers | Returns a paginated list of a recipient's transfers | [:link:](https://pinpayments.com/developers/api-reference/recipients#get-recipients-transfers) | :x: |
-| Refunds | GET /refunds | Returns a paginated list of all refunds | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-refunds) | :x: |
-| Refunds | GET /refunds/refund-token | Returns the details of the specified refund | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-refund) | :x: |
-| Refunds | POST  /charges/charge-token/refunds | Creates a new refund and returns its details | [:link:](https://pinpayments.com/developers/api-reference/refunds#post-refunds) | :x: |
-| Refunds | GET /charges/charge-token/refunds | Returns a list of all refunds for the specified charge | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-token-refunds) | :x: |
+| Refunds | GET /refunds | Returns a paginated list of all refunds | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-refunds) | :heavy_check_mark: |
+| Refunds | GET /refunds/refund-token | Returns the details of the specified refund | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-refund) | :heavy_check_mark: |
+| Refunds | POST  /charges/charge-token/refunds | Creates a new refund and returns its details | [:link:](https://pinpayments.com/developers/api-reference/refunds#post-refunds) | :heavy_check_mark: |
+| Refunds | GET /charges/charge-token/refunds | Returns a list of all refunds for the specified charge | [:link:](https://pinpayments.com/developers/api-reference/refunds#get-token-refunds) | :heavy_check_mark: |
 | Transfers | POST /transfers | Creates a new transfer | [:link:](https://pinpayments.com/developers/api-reference/transfers#post-transfers) | :x: |
 | Transfers | GET /transfers | Returns a paginated list of all transfers | [:link:](https://pinpayments.com/developers/api-reference/transfers#get-transfers) | :x: |
 | Transfers | GET /transfers/search | Returns a paginated list of transfers matching the search criteria | [:link:](https://pinpayments.com/developers/api-reference/transfers#search-transfers) | :x: |
