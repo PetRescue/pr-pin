@@ -88,6 +88,16 @@ subscription = PR::Pin.subscriptions.create(
 subscription.success? # => true
 subscription.error? # => false
 subscription # => #<PR::Pin::Struct::Subscription>
+
+ledger = PR::Pin.ledger.for_subscription('sub_293857')
+subscription.success? # => true
+subscription.error? # => false
+ledger
+# => [
+#   #<PR::Pin::Struct::Ledger type="credit" annotation="charge_credit" amount=1026 currency="AUD" created_at=#<DateTime: 2020-07-02T02:19:50+00:00 ((2459033j,8390s,0n),+0s,2299161j)>>,
+#   #<PR::Pin::Struct::Ledger type="debit" annotation="interval_fee" amount=1026 currency="AUD" created_at=#<DateTime: 2020-07-02T02:19:47+00:00 ((2459033j,8387s,0n),+0s,2299161j)>>,
+#   #<PR::Pin::Struct::Ledger type="debit" annotation="setup_fee" amount=0 currency="AUD" created_at=#<DateTime: 2020-07-02T02:19:47+00:00 ((2459033j,8387s,0n),+0s,2299161j)>>
+# ]
 ```
 
 ### Errors - See [PR::Pin::API::Error](https://github.com/PetRescue/pr-pin/blob/master/lib/pr/pin/api/error.rb)
@@ -141,7 +151,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Subscriptions | PUT /subscriptions/sub-token | Updates the card associated with a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#update-subscription) | :x: |
 | Subscriptions | DELETE /subscriptions/sub-token | Cancels the subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#delete-subscription) | :x: |
 | Subscriptions | PUT /subscriptions/sub-token/reactivate | Reactivates the subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#reactivate-subscription) | :x: |
-| Subscriptions | GET /subscriptions/sub-token/ledger | Fetch the ledger entries relating to a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#ledger-subscription) | :x: |
+| Subscriptions | GET /subscriptions/sub-token/ledger | Fetch the ledger entries relating to a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#ledger-subscription) | :heavy_check_mark: |
 | Recipients | POST /recipients | Creates a new recipient | [:link:](https://pinpayments.com/developers/api-reference/recipients#post-recipients) | :x: |
 | Recipients | GET /recipients | Returns a paginated list of all recipients | [:link:](https://pinpayments.com/developers/api-reference/recipients#get-recipients) | :x: |
 | Recipients | GET /recipients/recipient-token | Returns the details of a recipient | [:link:](https://pinpayments.com/developers/api-reference/recipients#get-recipient) | :x: |
