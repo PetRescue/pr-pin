@@ -57,6 +57,10 @@ module PR
         Repositories::Customers.new(environments[identifier])
       end
 
+      def ledger(identifier = :default)
+        Repositories::Ledger.new(environments[identifier])
+      end
+
       def plans(identifier = :default)
         Repositories::Plans.new(environments[identifier])
       end
