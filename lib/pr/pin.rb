@@ -65,6 +65,10 @@ module PR
         Repositories::Plans.new(environments[identifier])
       end
 
+      def refunds(identifier = :default)
+        Repositories::Refunds.new(environments[identifier])
+      end
+
       def subscriptions(identifier = :default)
         Repositories::Subscriptions.new(environments[identifier])
       end

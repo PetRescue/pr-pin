@@ -9,6 +9,10 @@ module PR
           attribute :currency, Types::Strict::String
           attribute :created_at, Types::JSON::DateTime
         end
+
+        def for_subscription(token)
+          with_base_path("/subscriptions/#{token}/ledger")
+        end
       end
     end
   end
