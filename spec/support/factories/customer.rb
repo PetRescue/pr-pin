@@ -1,6 +1,11 @@
 Factory.define(:customer) do |f|
   f.token { ['cus', fake(:number, :hexadecimal, digits: 22)].join('_') }
   f.email { fake(:internet, :email) }
+  f.first_name { [nil, fake(:name, :first_name)].sample }
+  f.last_name { [nil, fake(:name, :last_name)].sample }
+  f.phone_number { [nil, fake(:phone_number, :phone_number)].sample }
+  f.company { [nil, fake(:company, :name)].sample }
+  f.notes { [nil, fake(:lorem, :sentence)].sample }
   f.created_at { DateTime.now.to_json }
   f.card do |token|
     {
