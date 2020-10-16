@@ -22,7 +22,7 @@ RSpec.describe 'PR::Pin.plans.list' do
     end
 
     subject!(:result) do
-      PR::Pin.plans.list(params)
+      PR::Pin.plans.list(**params)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -46,7 +46,7 @@ RSpec.describe 'PR::Pin.plans.list' do
       let(:records) do
         Array.new(total_count) { Factory.structs[:plan] }
       end
-      let(:base_result) { PR::Pin.plans.list(params) }
+      let(:base_result) { PR::Pin.plans.list(**params) }
     end
   end
 end

@@ -22,7 +22,7 @@ RSpec.describe 'PR::Pin.subscriptions.list' do
     end
 
     subject!(:result) do
-      PR::Pin.subscriptions.list(params)
+      PR::Pin.subscriptions.list(**params)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -46,7 +46,7 @@ RSpec.describe 'PR::Pin.subscriptions.list' do
       let(:records) do
         Array.new(total_count) { Factory.structs[:subscription] }
       end
-      let(:base_result) { PR::Pin.subscriptions.list(params) }
+      let(:base_result) { PR::Pin.subscriptions.list(**params) }
     end
   end
 end

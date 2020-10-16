@@ -15,9 +15,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ["2.6.x", "2.5.x", "2.4.x"]
+        ruby: ["2.7.x", "2.6.x", "2.5.x", "2.4.x"]
         include:
-          - ruby: "2.6.x"
+          - ruby: "2.7.x"
             coverage: "true"
     env:
       COVERAGE: ${{matrix.coverage}}
@@ -27,13 +27,15 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{matrix.ruby}}
-      - name: Run all tests
+      - name: Install dependencies
         run: |
           gem install bundler
-          bundle install --jobs 4 --retry 3 --without tools docs benchmarks
-          bundle exec rake
+          bundle config set without 'tools docs benchmarks'
+          bundle install --jobs 4 --retry 3
+      - name: Run specs
+        run: bundle exec rake
       - name: Upload coverage results
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         if: env.COVERAGE
         with:
           name: coverage-report
@@ -52,8 +54,10 @@ jobs:
         run: |
           apt-get update
           apt-get install -y --no-install-recommends git
-      - name: Run all tests
+      - name: Install dependencies
         run: |
           gem install bundler
-          bundle install --jobs 4 --retry 3 --without tools docs benchmarks
-          bundle exec rspec
+          bundle config set without 'tools docs benchmarks'
+          bundle install --jobs 4 --retry 3
+      - name: Run specs
+        run: bundle exec rake

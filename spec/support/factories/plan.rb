@@ -1,6 +1,6 @@
 Factory.define(:plan) do |f|
   f.name { fake(:name, :name) }
-  f.amount { SecureRandom.random_number(10_000..50_000) }
+  f.amount { fake(:number, :rand, 10_000..50_000) }
   f.currency { 'AUD' }
   f.setup_amount { 0 }
   f.trial_amount { 0 }
@@ -10,7 +10,7 @@ Factory.define(:plan) do |f|
   f.trial_interval { 0 }
   f.trial_interval_unit { '' }
   f.created_at { DateTime.now.to_json }
-  f.token { ['plan', fake(:number, :hexadecimal, 22)].join('_') }
+  f.token { ['plan', fake(:number, :hexadecimal, digits: 22)].join('_') }
   f.customer_permissions { %w(cancel) }
   f.subscription_counts do
     {

@@ -23,7 +23,7 @@ RSpec.describe 'PR::Pin.ledger.for_subscription' do
     end
 
     subject!(:result) do
-      PR::Pin.ledger.for_subscription(subscription.token, params)
+      PR::Pin.ledger.for_subscription(subscription.token, **params)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -47,7 +47,7 @@ RSpec.describe 'PR::Pin.ledger.for_subscription' do
       let(:records) do
         Array.new(total_count) { Factory.structs[:ledger] }
       end
-      let(:base_result) { PR::Pin.ledger.for_subscription(subscription.token, params) }
+      let(:base_result) { PR::Pin.ledger.for_subscription(subscription.token, **params) }
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe 'PR::Pin.ledger.for_subscription' do
     end
 
     subject!(:error) do
-      PR::Pin.ledger.for_subscription(record.token, params)
+      PR::Pin.ledger.for_subscription(record.token, **params)
     end
 
     it { expect(request_stub).to have_been_requested }

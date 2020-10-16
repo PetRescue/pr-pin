@@ -1,5 +1,5 @@
 Factory.define(:charge) do |f|
-  f.token { ['ch', fake(:number, :hexadecimal, 22)].join('_') }
+  f.token { ['ch', fake(:number, :hexadecimal, digits: 22)].join('_') }
   f.success { true }
   f.amount { SecureRandom.random_number(10_000..50_000) }
   f.currency { 'AUD' }
@@ -11,11 +11,11 @@ Factory.define(:charge) do |f|
   f.error_message { nil }
   f.card do
     {
-      token: ['card', fake(:number, :hexadecimal, 22)].join('_'),
+      token: ['card', fake(:number, :hexadecimal, digits: 22)].join('_'),
       scheme: 'visa',
-      display_number: ['XXXX-XXXX-XXXX', fake(:number, :number, 4)].join('-'),
+      display_number: ['XXXX-XXXX-XXXX', fake(:number, :number, digits: 4)].join('-'),
       issuing_country: fake(:address, :country_code),
-      expiry_month: SecureRandom.random_number(1..12),
+      expiry_month: fake(:number, :rand, 1..12),
       expiry_year: Date.today.next_year.year,
       name: fake(:name, :name),
       address_line1: fake(:address, :street_address),

@@ -22,7 +22,7 @@ RSpec.describe 'PR::Pin.charges.search' do
     end
 
     subject!(:result) do
-      PR::Pin.charges.search(params)
+      PR::Pin.charges.search(**params)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -46,7 +46,7 @@ RSpec.describe 'PR::Pin.charges.search' do
       let(:records) do
         Array.new(total_count) { Factory.structs[:charge] }
       end
-      let(:base_result) { PR::Pin.charges.search(params) }
+      let(:base_result) { PR::Pin.charges.search(**params) }
     end
   end
 end
