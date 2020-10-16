@@ -151,7 +151,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Charges | GET /charges/charge-token | Returns the details of a charge | [:link:](https://pinpayments.com/developers/api-reference/charges#get-charge) | :heavy_check_mark: |
 | Customers | POST /customers | Creates a new customer | [:link:](https://pinpayments.com/developers/api-reference/customers#post-customers) | :heavy_check_mark: |
 | Customers | GET /customers | Returns a paginated list of all customers | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers) | :heavy_check_mark: |
-| Customers | GET /customers/customer-token | Returns the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customer) | :x: |
+| Customers | GET /customers/customer-token | Returns the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customer) | :heavy_check_mark: |
 | Customers | PUT /customers/customer-token | Updates the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#put-customer) | :x: |
 | Customers | DELETE /customers/customer-token | Deletes a customer and all of its cards | [:link:](https://pinpayments.com/developers/api-reference/customers#delete-customer) | :x: |
 | Customers | GET /customers/customer-token/charges | Returns a paginated list of a customer's charges | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-charges) | :x: |
