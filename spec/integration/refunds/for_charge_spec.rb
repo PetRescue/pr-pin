@@ -23,7 +23,7 @@ RSpec.describe 'PR::Pin.refunds.for_charge' do
     end
 
     subject!(:result) do
-      PR::Pin.refunds.for_charge(charge.token, params)
+      PR::Pin.refunds.for_charge(charge.token, **params)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -47,7 +47,7 @@ RSpec.describe 'PR::Pin.refunds.for_charge' do
       let(:records) do
         Array.new(total_count) { Factory.structs[:refund] }
       end
-      let(:base_result) { PR::Pin.refunds.for_charge(charge.token, params) }
+      let(:base_result) { PR::Pin.refunds.for_charge(charge.token, **params) }
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe 'PR::Pin.refunds.for_charge' do
     end
 
     subject!(:error) do
-      PR::Pin.refunds.for_charge(record.token, params)
+      PR::Pin.refunds.for_charge(record.token, **params)
     end
 
     it { expect(request_stub).to have_been_requested }

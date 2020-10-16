@@ -13,6 +13,8 @@ require 'securerandom'
 require 'bundler/setup'
 
 SPEC_ROOT = root = Pathname(__FILE__).dirname
+SUPPORT_FILES = Dir[root.join('support/*.rb').to_s].sort_by(&File.method(:basename))
+SHARED_FILES = Dir[root.join('shared/**/*.rb').to_s]
 
 begin
   require 'pry'
@@ -22,13 +24,8 @@ end
 
 require 'pr-pin'
 
-Dir[root.join('support/*.rb').to_s].each do |f|
-  require f
-end
-
-Dir[root.join('shared/**/*.rb').to_s].each do |f|
-  require f
-end
+SUPPORT_FILES.each(&method(:require))
+SHARED_FILES.each(&method(:require))
 
 RSpec.configure do |config|
   config.after do
