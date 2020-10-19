@@ -6,7 +6,7 @@ RSpec.describe 'PR::Pin.plans.update' do
       let(:record) { Factory.structs[:plan] }
       let(:updated_record) do
         Factory.structs[
-          :plan, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+          :plan, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
         ]
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe 'PR::Pin.plans.update' do
     let(:record) { Factory.structs[:plan] }
     let(:updated_record) do
       Factory.structs[
-        :plan, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+        :plan, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
       ]
     end
     let(:param_keys) { %i(name) }

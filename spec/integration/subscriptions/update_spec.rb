@@ -6,7 +6,7 @@ RSpec.describe 'PR::Pin.subscriptions.update' do
       let(:record) { Factory.structs[:subscription] }
       let(:updated_record) do
         Factory.structs[
-          :subscription, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+          :subscription, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
         ]
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe 'PR::Pin.subscriptions.update' do
     let(:record) { Factory.structs[:subscription] }
     let(:updated_record) do
       Factory.structs[
-        :subscription, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+        :subscription, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
       ]
     end
     let(:param_keys) { %i(card_token) }

@@ -6,7 +6,7 @@ RSpec.describe 'PR::Pin.customers.update' do
       let(:record) { Factory.structs[:customer] }
       let(:updated_record) do
         Factory.structs[
-          :customer, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+          :customer, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
         ]
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe 'PR::Pin.customers.update' do
     let(:record) { Factory.structs[:customer] }
     let(:updated_record) do
       Factory.structs[
-        :customer, Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
+        :customer, **Transformations::Hash.except(record.attributes, record.attributes.keys - param_keys)
       ]
     end
     let(:param_keys) { %i(email first_name) }
