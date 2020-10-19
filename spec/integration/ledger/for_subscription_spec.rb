@@ -52,7 +52,7 @@ RSpec.describe 'PR::Pin.ledger.for_subscription' do
   end
 
   context 'error response' do
-    include_context 'responses.find.not_found'
+    include_context 'responses.not_found'
 
     let(:record) { Factory.structs[:subscription] }
     let(:params) do

@@ -152,7 +152,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Customers | POST /customers | Creates a new customer | [:link:](https://pinpayments.com/developers/api-reference/customers#post-customers) | :heavy_check_mark: |
 | Customers | GET /customers | Returns a paginated list of all customers | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers) | :heavy_check_mark: |
 | Customers | GET /customers/customer-token | Returns the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customer) | :heavy_check_mark: |
-| Customers | PUT /customers/customer-token | Updates the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#put-customer) | :x: |
+| Customers | PUT /customers/customer-token | Updates the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#put-customer) | :heavy_check_mark: |
 | Customers | DELETE /customers/customer-token | Deletes a customer and all of its cards | [:link:](https://pinpayments.com/developers/api-reference/customers#delete-customer) | :x: |
 | Customers | GET /customers/customer-token/charges | Returns a paginated list of a customer's charges | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-charges) | :x: |
 | Customers | GET /customers/customer-token/cards | Returns a paginated list of a customer's cards | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-cards) | :x: |
@@ -163,15 +163,15 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Events | GET /events/event-token | Returns the details of the specified event | [:link:](https://pinpayments.com/developers/api-reference/events#get-event) | :x: |
 | Plans | POST /plans | Creates a new plan | [:link:](https://pinpayments.com/developers/api-reference/plans#post-plans) | :heavy_check_mark: |
 | Plans | GET /plans | Returns a paginated list of all plans | [:link:](https://pinpayments.com/developers/api-reference/plans#get-plans) | :heavy_check_mark: |
-| Plans | GET /plans/plan-token | Returns the details of a specified plan | [:link:](https://pinpayments.com/developers/api-reference/plans#get-plan) | :x: |
-| Plans | PUT /plans/plan-token | Update the specified plan | [:link:](https://pinpayments.com/developers/api-reference/plans#put-plan) | :x: |
+| Plans | GET /plans/plan-token | Returns the details of a specified plan | [:link:](https://pinpayments.com/developers/api-reference/plans#get-plan) | :heavy_check_mark: |
+| Plans | PUT /plans/plan-token | Update the specified plan | [:link:](https://pinpayments.com/developers/api-reference/plans#put-plan) | :heavy_check_mark: |
 | Plans | DELETE /plans/plan-token | Deletes a plan and all of its subscriptions | [:link:](https://pinpayments.com/developers/api-reference/plans#delete-plan) | :x: |
 | Plans | POST /plans/plan-token/subscriptions | Creates a new subscription to the specified plan | [:link:](https://pinpayments.com/developers/api-reference/plans#create-plan-subscription) | :x: |
 | Plans | GET /plans/plan-token/subscriptions | Returns a paginated list of subscriptions for a plan | [:link:](https://pinpayments.com/developers/api-reference/plans#get-plan-subscriptions) | :x: |
 | Subscriptions | POST /subscriptions | Activate a new subscription and returns its details | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#post-subscriptions) | :heavy_check_mark: |
 | Subscriptions | GET /subscriptions | Returns a paginated list of all subscriptions | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#get-subscriptions) | :heavy_check_mark: |
 | Subscriptions | GET /subscriptions/sub-token | Returns the details of the subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#get-subscription) | :heavy_check_mark: |
-| Subscriptions | PUT /subscriptions/sub-token | Updates the card associated with a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#update-subscription) | :x: |
+| Subscriptions | PUT /subscriptions/sub-token | Updates the card associated with a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#update-subscription) | :heavy_check_mark: |
 | Subscriptions | DELETE /subscriptions/sub-token | Cancels the subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#delete-subscription) | :x: |
 | Subscriptions | PUT /subscriptions/sub-token/reactivate | Reactivates the subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#reactivate-subscription) | :x: |
 | Subscriptions | GET /subscriptions/sub-token/ledger | Fetch the ledger entries relating to a subscription identified by subscription token | [:link:](https://pinpayments.com/developers/api-reference/subscriptions#ledger-subscription) | :heavy_check_mark: |

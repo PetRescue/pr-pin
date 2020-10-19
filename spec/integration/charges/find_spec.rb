@@ -29,7 +29,7 @@ RSpec.describe 'PR::Pin.charges.find' do
   end
 
   context 'error response' do
-    include_context 'responses.find.not_found'
+    include_context 'responses.not_found'
 
     let(:record) { Factory.structs[:charge] }
 
