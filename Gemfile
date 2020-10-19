@@ -9,3 +9,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'rom-factory'
 end
+
+group :tools do
+  gem 'rubocop'
+end

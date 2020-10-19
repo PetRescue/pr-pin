@@ -1,4 +1,4 @@
-RSpec.shared_context 'responses.find.not_found' do
+RSpec.shared_context 'responses.not_found' do
   let(:error_response) do
     {
       error: 'not_found',

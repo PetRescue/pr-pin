@@ -1,15 +1,15 @@
-RSpec.describe 'PR::Pin.customers.find' do
-  let(:representer) { Representers::JSONHash::Customer.new }
+RSpec.describe 'PR::Pin.plans.find' do
+  let(:representer) { Representers::JSONHash::Plan.new }
 
   context 'successful response' do
     include_context 'responses.find.success' do
-      let(:record) { Factory.structs[:customer] }
+      let(:record) { Factory.structs[:plan] }
     end
 
     let!(:request_stub) do
       stub_request(
         :get,
-        "https://test-api.pinpayments.com/1/customers/#{record.token}"
+        "https://test-api.pinpayments.com/1/plans/#{record.token}"
       ).with(
         basic_auth: [PIN_SECRET_KEY, ''],
         headers: {
@@ -19,7 +19,7 @@ RSpec.describe 'PR::Pin.customers.find' do
     end
 
     subject!(:result) do
-      PR::Pin.customers.find(record.token)
+      PR::Pin.plans.find(record.token)
     end
 
     it { expect(request_stub).to have_been_requested }
@@ -31,12 +31,12 @@ RSpec.describe 'PR::Pin.customers.find' do
   context 'error response' do
     include_context 'responses.not_found'
 
-    let(:record) { Factory.structs[:customer] }
+    let(:record) { Factory.structs[:plan] }
 
     let!(:request_stub) do
       stub_request(
         :get,
-        "https://test-api.pinpayments.com/1/customers/#{record.token}"
+        "https://test-api.pinpayments.com/1/plans/#{record.token}"
       ).with(
         basic_auth: [PIN_SECRET_KEY, ''],
         headers: {
@@ -46,7 +46,7 @@ RSpec.describe 'PR::Pin.customers.find' do
     end
 
     subject!(:error) do
-      PR::Pin.customers.find(record.token)
+      PR::Pin.plans.find(record.token)
     end
 
     it { expect(request_stub).to have_been_requested }
