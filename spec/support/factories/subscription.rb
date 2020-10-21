@@ -1,6 +1,6 @@
 Factory.define(:subscription) do |f|
   f.state { 'active' }
-  f.next_billing_date { DateTime.now.next_month.to_json }
+  f.next_billing_date { [nil, DateTime.now.next_month.to_json].sample }
   f.active_interval_started_at { [nil, DateTime.now.prev_month.to_json].sample }
   f.active_interval_finishes_at { [nil, DateTime.now.next_month(5).to_json].sample }
   f.cancelled_at { nil }
