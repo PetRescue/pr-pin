@@ -154,7 +154,7 @@ Coverage of https://pinpayments.com/developers/api-reference
 | Customers | GET /customers/customer-token | Returns the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customer) | :heavy_check_mark: |
 | Customers | PUT /customers/customer-token | Updates the details of a customer | [:link:](https://pinpayments.com/developers/api-reference/customers#put-customer) | :heavy_check_mark: |
 | Customers | DELETE /customers/customer-token | Deletes a customer and all of its cards | [:link:](https://pinpayments.com/developers/api-reference/customers#delete-customer) | :x: |
-| Customers | GET /customers/customer-token/charges | Returns a paginated list of a customer's charges | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-charges) | :x: |
+| Customers | GET /customers/customer-token/charges | Returns a paginated list of a customer's charges | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-charges) | :heavy_check_mark: |
 | Customers | GET /customers/customer-token/cards | Returns a paginated list of a customer's cards | [:link:](https://pinpayments.com/developers/api-reference/customers#get-customers-cards) | :x: |
 | Customers | POST /customers/customer-token/cards | Creates an additional card for the specified customer | [:link:](https://pinpayments.com/developers/api-reference/customers#post-customers-cards) | :x: |
 | Customers | DELETE /customers/customer-token/cards/card-token | Deletes a customer's non-primary card | [:link:](https://pinpayments.com/developers/api-reference/customers#delete-customers-card) | :x: |

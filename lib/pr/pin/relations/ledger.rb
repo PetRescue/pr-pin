@@ -10,8 +10,8 @@ module PR
           attribute :created_at, Types::JSON::DateTime
         end
 
-        def for_subscription(token)
-          with_base_path("/subscriptions/#{token}/ledger")
+        def for_subscription(subscription_token)
+          with_base_path("/subscriptions/#{subscription_token}/ledger")
         end
       end
     end

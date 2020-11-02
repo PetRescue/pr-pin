@@ -32,6 +32,15 @@ module PR
             relation.paginate
           end
         end
+
+        def for_customer(customer_token, page: 1, per_page: nil)
+          relation = root.for_customer(customer_token).with_params(
+            page: page,
+            per_page: per_page
+          )
+
+          API::PaginatedResult.wrap(relation) { relation.paginate }
+        end
       end
     end
   end
