@@ -25,6 +25,10 @@ module PR
           attribute :settlement_currency, Types::Strict::String
           attribute :metadata, Types::JSON::Hash
         end
+
+        def for_customer(customer_token)
+          with_base_path("/customers/#{customer_token}/charges")
+        end
       end
     end
   end

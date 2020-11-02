@@ -19,16 +19,16 @@ module PR
           API::Result.wrap(relation) { relation.one }
         end
 
-        def create_for_charge(token, *args)
-          relation = root.for_charge(token)
+        def create_for_charge(charge_token, *args)
+          relation = root.for_charge(charge_token)
 
           API::Result.wrap(relation) do
             relation.command(:create).call(*args)
           end
         end
 
-        def for_charge(token, page: 1, per_page: nil)
-          relation = root.for_charge(token).with_params(
+        def for_charge(charge_token, page: 1, per_page: nil)
+          relation = root.for_charge(charge_token).with_params(
             page: page,
             per_page: per_page
           )

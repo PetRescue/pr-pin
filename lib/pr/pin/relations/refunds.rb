@@ -13,8 +13,8 @@ module PR
           attribute :created_at, Types::JSON::DateTime
         end
 
-        def for_charge(token)
-          with_base_path("/charges/#{token}/refunds")
+        def for_charge(charge_token)
+          with_base_path("/charges/#{charge_token}/refunds")
         end
       end
     end
