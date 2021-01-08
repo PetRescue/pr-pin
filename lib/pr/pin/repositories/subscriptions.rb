@@ -23,7 +23,7 @@ module PR
         end
 
         def list(page: 1, per_page: nil)
-          relation = root.with_params(
+          relation = root.with_query_params(
             page: page,
             per_page: per_page
           )

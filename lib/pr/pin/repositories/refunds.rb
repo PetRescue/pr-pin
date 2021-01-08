@@ -5,7 +5,7 @@ module PR
         struct_namespace PR::Pin::Struct
 
         def list(page: 1, per_page: nil)
-          relation = root.with_params(
+          relation = root.with_query_params(
             page: page,
             per_page: per_page
           )
@@ -28,7 +28,7 @@ module PR
         end
 
         def for_charge(charge_token, page: 1, per_page: nil)
-          relation = root.for_charge(charge_token).with_params(
+          relation = root.for_charge(charge_token).with_query_params(
             page: page,
             per_page: per_page
           )
