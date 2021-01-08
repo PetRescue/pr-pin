@@ -17,7 +17,7 @@ module PR
         end
 
         def list(page: 1, per_page: nil)
-          relation = root.with_params(
+          relation = root.with_query_params(
             page: page,
             per_page: per_page
           )
@@ -26,7 +26,7 @@ module PR
         end
 
         def search(**params)
-          relation = root.append_path('search').with_params(params)
+          relation = root.append_path('search').with_query_params(params)
 
           API::PaginatedResult.wrap(relation) do
             relation.paginate
@@ -34,7 +34,7 @@ module PR
         end
 
         def for_customer(customer_token, page: 1, per_page: nil)
-          relation = root.for_customer(customer_token).with_params(
+          relation = root.for_customer(customer_token).with_query_params(
             page: page,
             per_page: per_page
           )

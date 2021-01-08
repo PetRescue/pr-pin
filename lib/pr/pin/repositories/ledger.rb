@@ -5,7 +5,7 @@ module PR
         struct_namespace PR::Pin::Struct
 
         def for_subscription(subscription_token, page: 1, per_page: nil)
-          relation = root.for_subscription(subscription_token).with_params(
+          relation = root.for_subscription(subscription_token).with_query_params(
             page: page,
             per_page: per_page
           )

@@ -32,5 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'dry-inflector'
   spec.add_runtime_dependency 'dry-types'
   spec.add_runtime_dependency 'rom', '>= 5.0.0'
-  spec.add_runtime_dependency 'rom-http', '>= 0.8.0'
+  # spec.add_runtime_dependency 'rom-http', '>= 0.8.0'
 end

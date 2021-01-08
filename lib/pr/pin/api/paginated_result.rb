@@ -12,7 +12,7 @@ module PR
 
             break unless page.next_page
 
-            relation = __relation__.add_params(page: page.next_page)
+            relation = __relation__.add_query_params(page: page.next_page)
             page = self.class.wrap(relation) { relation.paginate }
           end
         end
@@ -26,7 +26,7 @@ module PR
 
           remaining_pages = to_fetch.map do |page_num|
             Concurrent::Promises.future do
-              relation = __relation__.add_params(page: page_num)
+              relation = __relation__.add_query_params(page: page_num)
               self.class.wrap(relation) { relation.paginate }
             end
           end

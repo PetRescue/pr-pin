@@ -26,7 +26,7 @@ module PR
               request[header.to_s] = value
             end
 
-            request.body = dataset.params.to_json if dataset.params.any?
+            request.body = dataset.body_params.to_json if dataset.body_params.any?
 
             http.request(request)
           end
