@@ -3,7 +3,7 @@ module PR
     module Adapter
       class Handlers
         class JSONResponse
-          SUCCESS_CODES = %w(200 201).freeze
+          SUCCESS_CODES = %w(200 201 202).freeze
 
           def call(response, dataset)
             result = JSON.parse(
